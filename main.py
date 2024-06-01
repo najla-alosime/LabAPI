@@ -20,11 +20,11 @@ scaler = joblib.load('Models/scaler.joblib')
 
 
 class InputFeatures(BaseModel):
-      appearance: int
+      appearance: float
       goals: float
-      minutes_played: int 
-      games_injured: int
-      highest_value: int
+      minutes_played: float 
+      games_injured: float
+      highest_value: float
 
 
 

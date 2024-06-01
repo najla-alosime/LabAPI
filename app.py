@@ -47,17 +47,19 @@ inputs = {
 
 # When the user clicks on the button, it will fetch the API
 if st.button('Get Prediction'):
+   # res=None
     try:
        
         res = requests.post(
             url="https://labapi-4dnd.onrender.com/predict",
             headers={"Content-Type": "application/json"},
-            json=inputs
+            json=json.dumps(inputs)
         )
         res.raise_for_status()  # Check for HTTP request errors
+        #st.write(res.raw)
         st.subheader(f"Prediction result  = {res.json()}")
 
     except requests.exceptions.RequestException as e:
-        st.error(f"HTTP Request failed: {e}")
+        st.error(f"HTTP Request failed: {e.response.json()}")
     except ValueError as e:
         st.error(f"Failed to parse JSON response: {e}")
