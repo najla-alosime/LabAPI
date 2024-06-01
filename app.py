@@ -52,7 +52,7 @@ if st.button('Get Prediction'):
         res = requests.post(
             url="https://labapi-4dnd.onrender.com/predict",
             headers={"Content-Type": "application/json"},
-            data=json.dumps(inputs)
+            json=inputs
         )
         res.raise_for_status()  # Check for HTTP request errors
         st.subheader(f"Prediction result  = {res.json()}")
