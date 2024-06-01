@@ -17,7 +17,7 @@ def create_item(item: dict):
 model = joblib.load('Models/knn_model.joblib')
 scaler = joblib.load('Models/scaler.joblib')
 
-# Define a Pydantic model for input data validation
+
 
 class InputFeatures(BaseModel):
       appearance: int
@@ -31,9 +31,7 @@ class InputFeatures(BaseModel):
 
 
 
-#appearance	goals	assists	minutes played	days_injured	games_injured	award
-#highest_value	league_DStv	league_K-League	league_La liga	league_Premier League and Championship	league_Serie A
-#appearance	goals	assists	minutes played	days_injured	games_injured	award	highest_value	league_DStv	league_K-League	league_La liga	league_Premier League and Championship	league_Serie A
+
 def preprocessing(input_features: InputFeatures):
     dict_f = {
         'appearance': input_features.appearance,

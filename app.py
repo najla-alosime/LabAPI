@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.title("⚽  Prediction of Player Value  ⚽")
 
-df = pd.read_csv(r"C:\Users\HP\Desktop\NEW-LAB\LabAPI\Categorized_football.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/najla-alosime/LabAPI/main/Categorized_football.csv")
 
 # Assuming football_df is your DataFrame
 fig = px.scatter(
@@ -36,13 +36,13 @@ appearance = st.slider("Appearance", 0, 300, 10)
 
 # Converting the inputs into a JSON format
 inputs = {
-    "goals": goals,
-    "highest_value": highest_value,
-    "games_injured": games_injured,
-    "minutes_played": minutes_played, 
-    "appearance": appearance
-    
-    
+    'appearance': appearance,
+    'goals': goals,
+    'minutes_played': minutes_played,
+    'games_injured': games_injured,
+    'highest_value': highest_value,
+
+
     }
 
 # When the user clicks on the button, it will fetch the API
@@ -50,7 +50,7 @@ if st.button('Get Prediction'):
     try:
        
         res = requests.post(
-            url="https://labapi-4dnd.onrender.com",
+            url="https://labapi-4dnd.onrender.com/predict",
             headers={"Content-Type": "application/json"},
             data=json.dumps(inputs)
         )
