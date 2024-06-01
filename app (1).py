@@ -51,14 +51,14 @@ league = st.selectbox(
 
 # Converting the inputs into a JSON format
 inputs = {
-    
+    "league": league,
     "appearance": appearance,
     "goals": goals,
-    
+    "assists": assists,
     "minutes_played": minutes_played, 
-    
+    "days_injured": days_injured,
     "games_injured": games_injured,
-    
+    "award": award,
     "highest_value": highest_value,
     }
 

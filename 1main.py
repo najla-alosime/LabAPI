@@ -7,7 +7,7 @@ app = FastAPI()
 # GET request
 @app.get("/")
 def read_root():
-    return {"message": " Football api"}
+    return {"message": "Welcome to Football api"}
 
 # get request
 @app.get("/items/")
@@ -20,15 +20,15 @@ scaler = joblib.load('Models/scaler.joblib')
 # Define a Pydantic model for input data validation
 
 class InputFeatures(BaseModel):
-      appearance: int
-      goals: float
-      minutes_played: int 
-      games_injured: int
-      highest_value: int
-
-
-
-
+    league: str
+    appearance: int
+    goals: float
+    assists: float
+    minutes_played: int 
+    days_injured: int
+    games_injured: int
+    award: int
+    highest_value: int
 
 
 #appearance	goals	assists	minutes played	days_injured	games_injured	award
@@ -38,13 +38,17 @@ def preprocessing(input_features: InputFeatures):
     dict_f = {
         'appearance': input_features.appearance,
         'goals': input_features.goals,
-        
+        'assists': input_features.assists,
         'minutes_played': input_features.minutes_played,
-        
+        'days_injured': input_features.days_injured,
         'games_injured': input_features.games_injured,
-
+        'award': input_features.award,
         'highest_value': input_features.highest_value,
-   
+        'league_DStv': input_features.league == 'league_DStv',
+        'league_La liga': input_features.league == 'league_La liga',
+        'league_K-League': input_features.league == 'league_K-League',
+        'league_Premier League and Championship': input_features.league == 'league_Premier League and Championship',
+        'league_Serie A': input_features.league == 'league_Serie A',
     }
 
     # Convert dictionary values to a list in the correct order
